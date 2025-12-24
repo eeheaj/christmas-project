@@ -176,10 +176,17 @@ export default function WindowGrid({
         const actualWidth = imageRect.width
         
         // Scale factor = actual rendered size / natural size
-        const scale = actualWidth / naturalWidth
+        let scale = actualWidth / naturalWidth
+        
+        // Apply mobile multiplier to make windows smaller on mobile devices
+        const isMobile = window.innerWidth <= 768
+        if (isMobile) {
+          scale = scale * 0.65 // Make windows 65% of calculated size on mobile
+        }
+        
         setScaleFactor(scale)
         
-        console.log('Scale factor:', scale, 'Actual width:', actualWidth, 'Natural width:', naturalWidth)
+        console.log('Scale factor:', scale, 'Mobile:', isMobile, 'Actual width:', actualWidth, 'Natural width:', naturalWidth)
       }
     }
 
