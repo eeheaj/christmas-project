@@ -48,12 +48,12 @@ export default function ChristmasCountdown({ timezone }: ChristmasCountdownProps
         gap: '15px',
         flexWrap: 'wrap',
       }}>
-        <div style={{ minWidth: '80px' }}>
+        {/* <div style={{ minWidth: '80px' }}>
           <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#667eea' }}>
             {timeLeft.days}
           </div>
           <div style={{ fontSize: '0.9rem', color: '#666' }}>Days</div>
-        </div>
+        </div> */}
         <div style={{ minWidth: '80px' }}>
           <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#667eea' }}>
             {timeLeft.hours}
