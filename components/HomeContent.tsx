@@ -178,7 +178,7 @@ export default function HomeContent() {
           minHeight: '80vh',
           gap: '20px'
         }}>
-          <h1 style={{ fontSize: '2.5rem', color: '#333' }}>🏠 Welcome to Decorate My House!</h1>
+          <h1 style={{ fontSize: '2.5rem', color: '#eee' }}>🏠 Welcome to Decorate My House!</h1>
           <p style={{ fontSize: '1.2rem', color: '#666', textAlign: 'center', maxWidth: '600px' }}>
             Log in to create your own house and let visitors leave you letters this Christmas season.
           </p>
