@@ -25,12 +25,12 @@ const HOUSE_B_OFFSET = { left: 48, top: 219 }
 
 // Global nudge to adjust window positions (x = right, y = up when negative)
 const HOUSE_NUDGE = {
-  house1: { x: 5, y: -45 },
-  house2: { x: 5, y: -45 },
-  house3: { x: 5, y: -45 },
-  house4: { x: -3, y: -35},
-  house5: { x: -3, y: -35},
-  house6: { x: -3, y: -35 },
+  house1: { x: 5, y: -25 },
+  house2: { x: 5, y: -25 },
+  house3: { x: 5, y: -25 },
+  house4: { x: -3, y: -15},
+  house5: { x: -3, y: -15},
+  house6: { x: -3, y: -15 },
 } as const
 
 function getNudge(houseType: string) {
