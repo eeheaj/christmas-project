@@ -46,17 +46,17 @@ function getNudge(houseType: string) {
 // To center: (340 - 228 - 50 - 50) / 2 = 6px offset, but using 32px for visual centering
 const houseAWindowPositions = [
   // Row 1 (top) - centered horizontally
-  { left: 32, top: 40, width: 76, height: 102 },
-  { left: 132, top: 40, width: 76, height: 102 },
-  { left: 232, top: 40, width: 76, height: 102 },
+  { left: 32, top: 0, width: 76, height: 102 },
+  { left: 132, top: 0, width: 76, height: 102 },
+  { left: 232, top: 0, width: 76, height: 102 },
   // Row 2 (middle) - centered horizontally, increased gap
-  { left: 32, top: 180, width: 76, height: 102 },
-  { left: 132, top: 180, width: 76, height: 102 },
-  { left: 232, top: 180, width: 76, height: 102 },
+  { left: 32, top: 140, width: 76, height: 102 },
+  { left: 132, top: 140, width: 76, height: 102 },
+  { left: 232, top: 140, width: 76, height: 102 },
   // Row 3 (bottom) - centered horizontally, increased gap
-  { left: 32, top: 320, width: 76, height: 102 },
-  { left: 132, top: 320, width: 76, height: 102 },
-  { left: 232, top: 320, width: 76, height: 102 },
+  { left: 32, top: 280, width: 76, height: 102 },
+  { left: 132, top: 280, width: 76, height: 102 },
+  { left: 232, top: 280, width: 76, height: 102 },
 ]
 
 // Relative positions for windows on House B (house4, house5, house6)
