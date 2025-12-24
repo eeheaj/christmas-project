@@ -145,12 +145,13 @@ export default function WindowGrid({
   const WINDOWS_PER_PAGE = 9
   const [internalPage, setInternalPage] = useState(1)
   const [imageOffset, setImageOffset] = useState({ left: 0, top: 0 })
+  const [scaleFactor, setScaleFactor] = useState(1)
   
   // Use external page control if provided, otherwise use internal state
   const page = currentPage !== undefined ? currentPage : internalPage
   const setPage = onPageChange || setInternalPage
 
-  // Calculate the actual position of the house image within the container
+  // Calculate the actual position of the house image within the container AND scale factor
   useEffect(() => {
     const calculateImageOffset = () => {
       if (stageRef?.current && houseImageRef?.current) {
@@ -161,6 +162,16 @@ export default function WindowGrid({
           left: imageRect.left - containerRect.left,
           top: imageRect.top - containerRect.top,
         })
+
+        // Calculate scale factor based on actual rendered image size vs design size
+        const config = getHouseConfig(houseType)
+        // Get the natural (design) dimensions of the house SVG
+        const designHeight = config.dimensions.height + config.offset.top + 100 // approximate total SVG height
+        const actualHeight = imageRect.height
+        
+        // Scale factor = actual size / design size
+        const scale = actualHeight / designHeight
+        setScaleFactor(scale)
       }
     }
 
@@ -251,9 +262,15 @@ export default function WindowGrid({
         
         if (!position) return null
 
+        // Scale positions and sizes based on actual house image size
+        const scaledLeft = position.left * scaleFactor
+        const scaledTop = position.top * scaleFactor
+        const scaledWidth = position.width * scaleFactor
+        const scaledHeight = position.height * scaleFactor
+
         // Apply the measured image offset to align windows with actual house position
-        const adjustedLeft = position.left + imageOffset.left
-        const adjustedTop = position.top + imageOffset.top
+        const adjustedLeft = scaledLeft + imageOffset.left
+        const adjustedTop = scaledTop + imageOffset.top
 
         return (
           <div
@@ -264,8 +281,8 @@ export default function WindowGrid({
               position: 'absolute',
               left: `${adjustedLeft}px`,
               top: `${adjustedTop}px`,
-              width: `${position.width}px`,
-              height: `${position.height}px`,
+              width: `${scaledWidth}px`,
+              height: `${scaledHeight}px`,
               zIndex: 10,
               pointerEvents: 'auto',
             }}
@@ -277,8 +294,8 @@ export default function WindowGrid({
               backgroundColor={window.background_color}
               x={0}
               y={0}
-              width={position.width}
-              height={position.height}
+              width={scaledWidth}
+              height={scaledHeight}
               onUpdate={() => {}}
               onDelete={() => {}}
             />
