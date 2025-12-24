@@ -81,55 +81,6 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }: AuthModalP
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <h2>{isLogin ? 'Login' : 'Create Account'}</h2>
 
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="your.email@example.com"
-              required
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
-              required
-              minLength={6}
-            />
-          </div>
-
-          {error && (
-            <div style={{ color: '#ff4444', marginBottom: '15px', fontSize: '0.9rem' }}>
-              {error}
-            </div>
-          )}
-
-          <button type="submit" className="primary-btn" disabled={loading}>
-            {loading ? 'Loading...' : isLogin ? 'Login' : 'Create Account'}
-          </button>
-        </form>
-
-        {/* Divider */}
-        <div style={{ 
-          display: 'flex', 
-          alignItems: 'center', 
-          margin: '20px 0',
-          gap: '10px'
-        }}>
-          <div style={{ flex: 1, height: '1px', background: '#ddd' }} />
-          <span style={{ color: '#666', fontSize: '0.9rem' }}>OR</span>
-          <div style={{ flex: 1, height: '1px', background: '#ddd' }} />
-        </div>
-
         {/* Google Sign-In Button */}
         <button
           type="button"
