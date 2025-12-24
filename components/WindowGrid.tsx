@@ -181,7 +181,7 @@ export default function WindowGrid({
         // Apply mobile multiplier to make windows smaller on mobile devices
         const isMobile = window.innerWidth <= 768
         if (isMobile) {
-          scale = scale * 0.65 // Make windows 65% of calculated size on mobile
+          scale = scale * 0.45 // Make windows 65% of calculated size on mobile
         }
         
         setScaleFactor(scale)
