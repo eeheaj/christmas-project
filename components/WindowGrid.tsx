@@ -163,15 +163,23 @@ export default function WindowGrid({
           top: imageRect.top - containerRect.top,
         })
 
-        // Calculate scale factor based on actual rendered image size vs design size
+        // Calculate scale factor based on actual rendered image size vs natural size
         const config = getHouseConfig(houseType)
-        // Get the natural (design) dimensions of the house SVG
-        const designHeight = config.dimensions.height + config.offset.top + 100 // approximate total SVG height
-        const actualHeight = imageRect.height
+        const img = houseImageRef.current
         
-        // Scale factor = actual size / design size
-        const scale = actualHeight / designHeight
+        // Use the natural/intrinsic dimensions of the SVG
+        // House A SVGs are approximately 398px wide, House B are approximately 396px wide
+        const naturalWidth = houseType.startsWith('house1') || houseType.startsWith('house2') || houseType.startsWith('house3') 
+          ? 398 
+          : 396
+        
+        const actualWidth = imageRect.width
+        
+        // Scale factor = actual rendered size / natural size
+        const scale = actualWidth / naturalWidth
         setScaleFactor(scale)
+        
+        console.log('Scale factor:', scale, 'Actual width:', actualWidth, 'Natural width:', naturalWidth)
       }
     }
 
