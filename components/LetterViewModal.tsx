@@ -8,13 +8,14 @@ interface LetterViewModalProps {
   onClose: () => void
   window: Window | null
   houseTimezone: string
+  houseCreatedAt: string
   isOwner: boolean
 }
 
-export default function LetterViewModal({ isOpen, onClose, window, houseTimezone, isOwner }: LetterViewModalProps) {
+export default function LetterViewModal({ isOpen, onClose, window, houseTimezone, houseCreatedAt, isOwner }: LetterViewModalProps) {
   if (!isOpen || !window) return null
 
-  const canViewLetter = isOwner && isChristmasPassed(houseTimezone)
+  const canViewLetter = isOwner && isChristmasPassed(houseTimezone, houseCreatedAt)
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)

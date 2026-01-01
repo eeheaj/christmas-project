@@ -9,8 +9,20 @@ interface ChristmasCountdownProps {
 
 export default function ChristmasCountdown({ timezone }: ChristmasCountdownProps) {
   const [timeLeft, setTimeLeft] = useState(getTimeUntilChristmas(timezone))
+  const [targetYear, setTargetYear] = useState(new Date().getFullYear())
 
   useEffect(() => {
+    // Calculate which Christmas we're counting down to
+    const now = new Date()
+    const currentYear = now.getFullYear()
+    const christmasThisYear = new Date(`${currentYear}-12-25T23:59:59`)
+    
+    if (now > christmasThisYear) {
+      setTargetYear(currentYear + 1)
+    } else {
+      setTargetYear(currentYear)
+    }
+
     const interval = setInterval(() => {
       setTimeLeft(getTimeUntilChristmas(timezone))
     }, 1000)
@@ -28,7 +40,6 @@ export default function ChristmasCountdown({ timezone }: ChristmasCountdownProps
         marginBottom: '20px',
       }}>
         <h3 style={{ margin: 0, color: '#d32f2f', fontSize: '1.5rem' }}>🎄 Merry Christmas! 🎄</h3>
-        <p style={{ margin: '10px 0 0 0', color: '#666' }}>Letters are now visible!</p>
       </div>
     )
   }
@@ -41,7 +52,7 @@ export default function ChristmasCountdown({ timezone }: ChristmasCountdownProps
       textAlign: 'center',
       marginBottom: '20px',
     }}>
-      <h3 style={{ margin: '0 0 15px 0', color: '#333' }}>⏰ Time Until Christmas</h3>
+      <h3 style={{ margin: '0 0 15px 0', color: '#333' }}>⏰ Time Until Christmas {targetYear}</h3>
       <div style={{
         display: 'flex',
         justifyContent: 'space-around',
@@ -74,7 +85,7 @@ export default function ChristmasCountdown({ timezone }: ChristmasCountdownProps
         </div>
       </div>
       <p style={{ margin: '15px 0 0 0', fontSize: '0.9rem', color: '#666' }}>
-        Letters will be visible after Christmas in {timezone}
+        in {timezone}
       </p>
     </div>
   )

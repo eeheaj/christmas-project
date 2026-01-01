@@ -335,6 +335,7 @@ export default function HomeContent() {
           }}
           window={selectedWindow}
           houseTimezone={house.timezone}
+          houseCreatedAt={house.created_at}
           isOwner={false}
         />
 
@@ -379,6 +380,7 @@ export default function HomeContent() {
         }}
         window={selectedWindow}
         houseTimezone={house?.timezone || 'America/New_York'}
+        houseCreatedAt={house?.created_at || new Date().toISOString()}
         isOwner={role === 'owner'}
       />
 
